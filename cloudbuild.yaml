@@ -1,3 +1,11 @@
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '.' ]
+  args: [ 'build', '-t', 'us.gcr.io/$PROJECT_ID/cpp:latest', '.' ]
+- name: 'cpp'
+  args: './autogen.sh'
+- name: 'cpp'
+  args: ./configure --disable-tests
+- name: 'cpp'
+  args: 'make'
+
+images: [us.gcr.io/$PROJECT_ID/cpp:latest]
